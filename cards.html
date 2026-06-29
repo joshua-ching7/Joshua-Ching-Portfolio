@@ -6,21 +6,21 @@
   <title>Joshua Ching — Pick a Card</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--bg:#fff;--fg:#1d1d1f;--mid:#6e6e73;--soft:#f5f5f7;--line:#e8e8ed;--red:#b3122e}
+    :root{--bg:#fff;--fg:#1d1d1f;--mid:#6e6e73;--soft:#f5f5f7;--line:#e8e8ed;--red:#b3122e;
+          --mono:"JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
     html{scroll-behavior:smooth}
     body{background:var(--bg);color:var(--fg);font-family:"Inter",-apple-system,BlinkMacSystemFont,sans-serif;font-weight:400;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
     .wrap{max-width:1100px;margin:0 auto;padding:46px 32px 90px}
 
     /* top */
     .top{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px}
-    .brand{display:flex;align-items:center;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;cursor:pointer;transition:opacity .15s}
+    .brand:hover{opacity:.6}
     .logo{width:34px;height:34px;border:1.5px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:500}
     .brand h1{font-size:19px;font-weight:400;letter-spacing:-.03em}
-    .top a{font-size:13px;color:var(--mid);text-decoration:none;border:1px solid var(--line);padding:7px 14px;border-radius:20px;transition:background .15s}
-    .top a:hover{background:var(--soft)}
     .lede{font-size:14px;color:var(--mid);margin:14px 0 40px;max-width:520px}
 
     /* table of two cards */
@@ -48,29 +48,33 @@
     .xp-desc{font-size:13.5px;color:var(--mid);line-height:1.64;margin-top:6px;max-width:66ch}
     .xp-role{color:var(--fg);font-weight:500}
 
-    /* about */
-    .about{display:grid;grid-template-columns:1fr 1fr;gap:44px}
-    .about-bio{font-size:15px;line-height:1.78;color:var(--mid)}
-    .about-bio strong{color:var(--fg);font-weight:500}
-    .block-label{font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);margin:26px 0 13px}
-    .block-label:first-child{margin-top:0}
-    .edu-row{display:flex;justify-content:space-between;align-items:baseline}
-    .edu-school{font-size:15px;font-weight:500}
-    .edu-grad{font-size:13px;color:var(--mid)}
-    .edu-degree,.edu-gpa{font-size:13px;color:var(--mid);margin-top:3px}
-    .awards{margin-top:16px;display:flex;flex-direction:column;gap:9px}
-    .award-pill{display:inline-flex;align-items:center;gap:8px;font-size:13px;padding:7px 13px;background:var(--soft);border-radius:10px;width:fit-content}
-    .tags{display:flex;flex-wrap:wrap;gap:7px}
-    .tag{font-size:13px;padding:5px 12px;background:var(--soft);border-radius:20px}
-    a.tag-link{text-decoration:none;color:inherit}
-    a.tag-link .tag{cursor:pointer;transition:background .15s}
-    a.tag-link .tag:hover{background:var(--line)}
+    /* about panel (inline, single column) */
+    .ab{max-width:620px;margin:0 auto}
+    .ab-hero{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:34px}
+    .ab-head{flex:1;min-width:0}
+    .ab .polaroid{flex-shrink:0;display:inline-block;background:#fff;padding:10px 10px 30px;box-shadow:0 4px 16px rgba(0,0,0,.13),0 1px 4px rgba(0,0,0,.08);transform:rotate(-2.5deg);transition:transform .3s,box-shadow .3s}
+    .ab .polaroid:hover{transform:rotate(0) scale(1.03);box-shadow:0 8px 28px rgba(0,0,0,.18)}
+    .ab .polaroid-img{width:160px;height:178px;object-fit:cover;display:block}
+    .ab .polaroid-caption{text-align:center;font-family:var(--mono);font-size:11px;color:var(--mid);margin-top:9px;letter-spacing:.02em}
+    .ab .name{font-size:26px;font-weight:500;letter-spacing:-.03em}
+    .ab .subtitle{font-family:var(--mono);font-size:12px;color:var(--mid);margin-top:9px;letter-spacing:-.01em}
+    .ab .bio{font-size:15px;line-height:1.78;color:var(--mid);margin-bottom:40px}
+    .ab .bio strong{color:var(--fg);font-weight:500}
+    .ab .bio p + p{margin-top:16px}
+    .ab .section-label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mid);margin-bottom:6px}
+    .ab .links{display:flex;flex-direction:column;border-bottom:1px solid var(--line)}
+    .ab .link-row{display:flex;gap:20px;align-items:baseline;font-family:var(--mono);font-size:13px;text-decoration:none;color:var(--fg);padding:11px 4px;border-top:1px solid var(--line);transition:background .15s,padding .15s}
+    .ab .link-row .k{color:var(--mid);width:78px;flex-shrink:0}
+    .ab .link-row .v{color:var(--fg)}
+    .ab .link-row:hover{background:var(--soft);padding-left:10px}
+    .ab .link-row:hover .v{text-decoration:underline;text-underline-offset:3px}
 
     @media(max-width:680px){
       .wrap{padding:34px 20px 70px}
       .deal{gap:30px}
       .card-svg{width:168px;height:235px}
-      .about{grid-template-columns:1fr;gap:30px}
+      .ab-hero{flex-direction:column-reverse;align-items:center;gap:20px}
+      .ab-head{text-align:center}
     }
   </style>
 </head>
@@ -309,10 +313,10 @@
 
 <div class="wrap">
   <div class="top">
-    <div class="brand">
+    <a class="brand" href="index.html">
       <div class="logo">JC</div>
       <h1>joshua ching</h1>
-    </div>
+    </a>
   </div>
   <div class="deal">
     <button class="pick" id="pick-exp" data-target="panel-exp" aria-expanded="false">
@@ -363,33 +367,26 @@
   <!-- ===== About panel ===== -->
   <div class="panel" id="panel-about">
     <div class="panel-inner"><div class="panel-pad">
-      <div class="about">
-        <div>
-          <p class="about-bio">Hey, I'm Joshua — a <strong>dual-degree student at UC Berkeley</strong> studying Data Science and Business Administration at Haas.<br/><br/>I care about building products that are fast, useful, and a little bit magical. I've shipped AI tools at startups, led agile sprints with engineers, and built go-to-market strategies for open-source software. Most energized at the intersection of <strong>LLMs, data, and product strategy</strong>.<br/><br/>Outside of work: card magic, Formula One, basketball, pickleball, digital photography, and petting every dog I meet.</p>
-          <p class="block-label" style="margin-top:30px">Education</p>
-          <div class="edu-row"><span class="edu-school">UC Berkeley</span><span class="edu-grad">May 2027</span></div>
-          <p class="edu-degree">B.A. Data Science &amp; B.S. Business Administration (Haas)</p>
-          <p class="edu-gpa">GPA 3.7 / 4.0</p>
-          <div class="awards">
-            <div class="award-pill">🏆 Voya Financial National Case — 1st / 15,000</div>
-            <div class="award-pill">🥉 Paravel Case Competition — 3rd Place</div>
+      <div class="ab">
+        <div class="ab-hero">
+          <div class="ab-head">
+            <h2 class="name">Joshua Ching</h2>
+            <p class="subtitle">data science &amp; business @ uc berkeley · grad dec 2027</p>
+          </div>
+          <div class="polaroid">
+            <img src="joshua.jpg" alt="Joshua Ching" class="polaroid-img"/>
+            <div class="polaroid-caption">joshua ching</div>
           </div>
         </div>
-        <div>
-          <p class="block-label">Technical</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">SQL</span><span class="tag">R</span><span class="tag">Git</span><span class="tag">HTML</span></div>
-          <p class="block-label">AI &amp; Vibe Coding</p>
-          <div class="tags"><span class="tag">Claude</span><span class="tag">Cursor</span><span class="tag">Lovable</span><span class="tag">RAG / LLMs</span><span class="tag">Prompt Engineering</span></div>
-          <p class="block-label">Product &amp; Design</p>
-          <div class="tags"><span class="tag">Figma</span><span class="tag">Jira</span><span class="tag">Notion</span><span class="tag">A/B Testing</span><span class="tag">User Research</span></div>
-          <p class="block-label">Data &amp; Finance</p>
-          <div class="tags"><span class="tag">Bloomberg</span><span class="tag">Morningstar</span><span class="tag">Tableau</span><span class="tag">Excel</span><span class="tag">NumPy / Pandas</span></div>
-          <p class="block-label">Contact</p>
-          <div class="tags">
-            <a class="tag-link" href="mailto:joshua.ching@berkeley.edu"><span class="tag">✉ joshua.ching@berkeley.edu</span></a>
-            <a class="tag-link" href="https://linkedin.com/in/joshua-ching7" target="_blank"><span class="tag">↗ LinkedIn</span></a>
-            <a class="tag-link" href="https://github.com/joshua-ching7" target="_blank"><span class="tag">↗ GitHub</span></a>
-          </div>
+        <div class="bio">
+          <p>I'm a dual-degree student at <strong>UC Berkeley</strong> — Data Science (B.A.) and Business at Haas (B.S.) — graduating December 2027.</p>
+          <p>I build AI-powered products at the intersection of <strong>LLMs, data, and product strategy</strong>: AI tools at startups, go-to-market for open source, and a few side projects just for fun. Off the clock you'll find me doing card magic, watching Formula One, on a basketball or pickleball court, or photographing things I never get around to printing.</p>
+        </div>
+        <p class="section-label">elsewhere</p>
+        <div class="links">
+          <a class="link-row" href="mailto:joshua.ching@berkeley.edu"><span class="k">email</span><span class="v">joshua.ching@berkeley.edu</span></a>
+          <a class="link-row" href="https://linkedin.com/in/joshua-ching7" target="_blank" rel="noopener"><span class="k">linkedin</span><span class="v">/in/joshua-ching7 ↗</span></a>
+          <a class="link-row" href="https://github.com/joshua-ching7" target="_blank" rel="noopener"><span class="k">github</span><span class="v">/joshua-ching7 ↗</span></a>
         </div>
       </div>
     </div></div>
@@ -527,22 +524,23 @@
 
   // ── Init ──────────────────────────────────────────
   window.addEventListener('DOMContentLoaded', function(){
-    var panelExp  = document.getElementById('panel-exp');
-    var pickExp   = document.getElementById('pick-exp');
-    var pickAbout = document.getElementById('pick-about');
+    var panelExp   = document.getElementById('panel-exp');
+    var panelAbout = document.getElementById('panel-about');
+    var pickExp    = document.getElementById('pick-exp');
+    var pickAbout  = document.getElementById('pick-about');
 
-    new Card(pickExp, -4, function(){
-      var open = panelExp.classList.toggle('open');
-      pickExp.classList.toggle('open', open);
-      pickExp.setAttribute('aria-expanded', String(open));
+    // Toggle an inline reveal panel below its card (shared by both cards)
+    function reveal(panel, pick){
+      var open = panel.classList.toggle('open');
+      pick.classList.toggle('open', open);
+      pick.setAttribute('aria-expanded', String(open));
       if (open) setTimeout(function(){
-        panelExp.scrollIntoView({behavior:'smooth', block:'nearest'});
+        panel.scrollIntoView({behavior:'smooth', block:'nearest'});
       }, 200);
-    });
+    }
 
-    new Card(pickAbout, 4, function(){
-      window.location.href = 'about.html';
-    });
+    new Card(pickExp,   -4, function(){ reveal(panelExp,   pickExp);   });
+    new Card(pickAbout,  4, function(){ reveal(panelAbout, pickAbout); });
   });
 })();
 </script>
