@@ -26,7 +26,7 @@
     /* table of two cards */
     .deal{display:flex;gap:64px;justify-content:center;flex-wrap:wrap;margin-top:72px;margin-bottom:14px}
     .pick{background:none;border:none;cursor:default;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:16px;padding:8px}
-    .card-svg{width:208px;height:291px;border-radius:16px;display:block;will-change:transform,filter;cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;transform-origin:center center}
+    .card-svg{width:208px;height:291px;border-radius:16px;display:block;will-change:transform,filter;cursor:grab;touch-action:none;user-select:none;-webkit-user-drag:none;transform-origin:center center;backface-visibility:hidden;-webkit-backface-visibility:hidden;shape-rendering:geometricPrecision}
     .cap{display:flex;flex-direction:column;align-items:center;gap:3px}
     .cap b{font-size:16px;font-weight:500;letter-spacing:-.01em}
     .cap span{font-size:12px;color:var(--mid);display:flex;align-items:center;gap:5px}
@@ -39,18 +39,14 @@
     .panel-inner{overflow:hidden}
     .panel-pad{padding:34px 4px 8px}
 
-    /* experience */
-    .role{padding:22px 0;border-top:1px solid var(--line);display:grid;grid-template-columns:46px 1fr;gap:16px}
-    .role:first-child{border-top:none}
-    .role-ic{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;background:var(--soft)}
-    .role-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .role-co{font-size:16px;font-weight:500}
-    .role-when{font-size:12.5px;color:var(--mid)}
-    .role-sub{font-size:13px;color:var(--mid);margin:2px 0 12px}
-    .hl{display:flex;gap:11px;align-items:flex-start;margin-top:8px}
-    .hl-dot{width:5px;height:5px;border-radius:50%;background:var(--fg);margin-top:8px;flex-shrink:0}
-    .hl p{font-size:13.5px;color:var(--mid);line-height:1.62}
-    .hl p strong{color:var(--fg);font-weight:500}
+    /* experience — clean list */
+    .xp{padding:18px 0;border-top:1px solid var(--line)}
+    .xp:first-child{border-top:none;padding-top:2px}
+    .xp-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+    .xp-co{font-size:15.5px;font-weight:600;letter-spacing:-.01em;color:var(--fg)}
+    .xp-when{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:11.5px;color:var(--mid);letter-spacing:-.02em}
+    .xp-desc{font-size:13.5px;color:var(--mid);line-height:1.64;margin-top:6px;max-width:66ch}
+    .xp-role{color:var(--fg);font-weight:500}
 
     /* about */
     .about{display:grid;grid-template-columns:1fr 1fr;gap:44px}
@@ -173,6 +169,141 @@
         <circle cx="210" cy="246" r="1.3"/><circle cx="52" cy="246" r="1.3"/>
       </g>
     </symbol>
+
+    <!-- ── Experience card back (unique emblems) ── -->
+    <symbol id="back-exp" viewBox="0 0 260 364">
+      <!-- navy field -->
+      <rect x="2" y="2" width="256" height="360" rx="17" fill="#2a2a63" stroke="#dcdce4" stroke-width="1"/>
+      <!-- frames -->
+      <rect x="13" y="13" width="234" height="338" rx="11" fill="none" stroke="#f4efe1" stroke-width="2"/>
+      <rect x="20" y="20" width="220" height="324" rx="8" fill="none" stroke="#f4efe1" stroke-width="1.4" stroke-dasharray="0.5 6" stroke-linecap="round" opacity="0.95"/>
+      <!-- corner dots -->
+      <circle cx="29" cy="29" r="2" fill="#f4efe1"/>
+      <circle cx="231" cy="29" r="2" fill="#f4efe1"/>
+      <circle cx="29" cy="335" r="2" fill="#f4efe1"/>
+      <circle cx="231" cy="335" r="2" fill="#f4efe1"/>
+
+      <!-- sunburst rays (same centre as shared back) -->
+      <g>
+        <use href="#rayL" transform="rotate(0 130 182)"/>
+        <use href="#rayS" transform="rotate(15 130 182)"/>
+        <use href="#rayL" transform="rotate(30 130 182)"/>
+        <use href="#rayS" transform="rotate(45 130 182)"/>
+        <use href="#rayL" transform="rotate(60 130 182)"/>
+        <use href="#rayS" transform="rotate(75 130 182)"/>
+        <use href="#rayL" transform="rotate(90 130 182)"/>
+        <use href="#rayS" transform="rotate(105 130 182)"/>
+        <use href="#rayL" transform="rotate(120 130 182)"/>
+        <use href="#rayS" transform="rotate(135 130 182)"/>
+        <use href="#rayL" transform="rotate(150 130 182)"/>
+        <use href="#rayS" transform="rotate(165 130 182)"/>
+        <use href="#rayL" transform="rotate(180 130 182)"/>
+        <use href="#rayS" transform="rotate(195 130 182)"/>
+        <use href="#rayL" transform="rotate(210 130 182)"/>
+        <use href="#rayS" transform="rotate(225 130 182)"/>
+        <use href="#rayL" transform="rotate(240 130 182)"/>
+        <use href="#rayS" transform="rotate(255 130 182)"/>
+        <use href="#rayL" transform="rotate(270 130 182)"/>
+        <use href="#rayS" transform="rotate(285 130 182)"/>
+        <use href="#rayL" transform="rotate(300 130 182)"/>
+        <use href="#rayS" transform="rotate(315 130 182)"/>
+        <use href="#rayL" transform="rotate(330 130 182)"/>
+        <use href="#rayS" transform="rotate(345 130 182)"/>
+      </g>
+
+      <!-- centre medallion: flat disc (matches moon card) + Cal wordmark -->
+      <circle cx="130" cy="182" r="31" fill="#2a2a63" stroke="#f4efe1" stroke-width="1.4"/>
+      <circle cx="130" cy="182" r="26" fill="none" stroke="#f4efe1" stroke-width="0.6" opacity="0.55"/>
+      <!-- official Cal wordmark (real artwork, pre-recolored navy->cream) -->
+      <image href="cal-cream.png"
+             x="109" y="165" width="42" height="33.6"
+             preserveAspectRatio="xMidYMid meet"/>
+
+      <!-- banner ribbon -->
+      <path d="M64 246 L196 246 L188 258 L196 270 L64 270 L72 258 Z" fill="#2a2a63" stroke="#f4efe1" stroke-width="1.2"/>
+      <text x="130" y="262" text-anchor="middle" font-family="Georgia,serif" font-size="12" letter-spacing="4" fill="#f4efe1">&#10022; JC &#10022;</text>
+
+      <!-- top-left: constellation -->
+      <g stroke="#f4efe1" stroke-width="0.8" opacity="0.85" fill="#f4efe1">
+        <line x1="44" y1="64" x2="60" y2="54"/><line x1="60" y1="54" x2="74" y2="70"/>
+        <line x1="74" y1="70" x2="92" y2="62"/><line x1="74" y1="70" x2="68" y2="88"/>
+        <circle cx="44" cy="64" r="1.8"/><circle cx="60" cy="54" r="1.8"/><circle cx="74" cy="70" r="1.8"/>
+        <circle cx="92" cy="62" r="1.8"/><circle cx="68" cy="88" r="1.8"/>
+      </g>
+
+      <!-- top-right: Campanile (Sather Tower) line art -->
+      <g stroke="#f4efe1" fill="none" opacity="0.9">
+        <!-- cross finial -->
+        <line x1="200" y1="26" x2="200" y2="35" stroke-width="1.1"/>
+        <line x1="196" y1="30" x2="204" y2="30" stroke-width="1.1"/>
+        <!-- spire (solid triangle) -->
+        <polygon points="200,35 193,51 207,51" fill="#f4efe1" stroke="none"/>
+        <!-- belfry box -->
+        <rect x="191" y="51" width="18" height="11" stroke-width="0.85"/>
+        <!-- twin arch openings -->
+        <path d="M193,62 Q196.5,54 200,62" stroke-width="0.8"/>
+        <path d="M200,62 Q203.5,54 207,62" stroke-width="0.8"/>
+        <!-- clock section -->
+        <rect x="190" y="62" width="20" height="13" stroke-width="0.85"/>
+        <circle cx="200" cy="68.5" r="4.5" stroke-width="0.8"/>
+        <!-- clock hands (10:10 position) -->
+        <line x1="200" y1="68.5" x2="197.5" y2="65.5" stroke-width="0.7"/>
+        <line x1="200" y1="68.5" x2="203.5" y2="66.5" stroke-width="0.7"/>
+        <!-- decorative band -->
+        <line x1="189" y1="75" x2="211" y2="75" stroke-width="0.7" opacity="0.7"/>
+        <!-- main shaft -->
+        <rect x="192" y="75" width="16" height="17" stroke-width="0.85"/>
+        <!-- lower tapered section -->
+        <rect x="189" y="92" width="22" height="5" stroke-width="0.85"/>
+        <!-- base plinth -->
+        <rect x="186" y="97" width="28" height="3.5" stroke-width="0.85"/>
+      </g>
+      <!-- stars flanking the campanile -->
+      <circle cx="180" cy="40" r="1.3" fill="#f4efe1"/>
+      <circle cx="222" cy="48" r="1.3" fill="#f4efe1"/>
+      <circle cx="218" cy="70" r="1.3" fill="#f4efe1"/>
+      <use href="#spark" transform="translate(181,58) scale(0.52)"/>
+
+      <!-- bottom-right: stock-chart constellation with arrow tip -->
+      <g opacity="0.88">
+        <polyline points="168,308 180,295 191,308 203,294 215,302 225,290"
+                  fill="none" stroke="#f4efe1" stroke-width="0.85"/>
+        <circle cx="168" cy="308" r="1.8" fill="#f4efe1"/>
+        <circle cx="180" cy="295" r="1.8" fill="#f4efe1"/>
+        <circle cx="191" cy="308" r="1.8" fill="#f4efe1"/>
+        <circle cx="203" cy="294" r="1.8" fill="#f4efe1"/>
+        <circle cx="215" cy="302" r="1.8" fill="#f4efe1"/>
+        <circle cx="225" cy="290" r="1.8" fill="#f4efe1"/>
+        <!-- arrowhead: direction from (215,302)→(225,290), up-right -->
+        <polygon points="230,283 228,293 222,288" fill="#f4efe1"/>
+      </g>
+
+      <!-- bottom-left: basketball (line-art, tilted seams so it reads as a ball not a globe) -->
+      <g stroke="#f4efe1" fill="none" opacity="0.9" stroke-linecap="round" stroke-width="0.85">
+        <circle cx="62" cy="300" r="13" fill="#2a2a63" stroke-width="1.1"/>
+        <g transform="rotate(22 62 300)">
+          <line x1="62" y1="287" x2="62" y2="313"/>
+          <line x1="49" y1="300" x2="75" y2="300"/>
+          <path d="M62,287 Q49,300 62,313"/>
+          <path d="M62,287 Q75,300 62,313"/>
+        </g>
+      </g>
+
+      <!-- scattered sparkles -->
+      <use href="#spark" transform="translate(130,44) scale(1.1)"/>
+      <use href="#spark" transform="translate(196,150) scale(0.7)"/>
+      <use href="#spark" transform="translate(64,150) scale(0.7)"/>
+      <use href="#spark" transform="translate(200,118) scale(0.6)"/>
+      <use href="#spark" transform="translate(130,326) scale(0.9)"/>
+      <use href="#spark" transform="translate(98,316) scale(0.5)"/>
+      <!-- tiny stars -->
+      <g fill="#f4efe1">
+        <circle cx="112" cy="118" r="1.3"/><circle cx="152" cy="124" r="1.3"/>
+        <circle cx="178" cy="210" r="1.3"/><circle cx="84" cy="214" r="1.3"/>
+        <circle cx="150" cy="312" r="1.3"/><circle cx="100" cy="92" r="1.3"/>
+        <circle cx="210" cy="246" r="1.3"/><circle cx="52" cy="246" r="1.3"/>
+      </g>
+    </symbol>
   </defs>
 </svg>
 
@@ -185,12 +316,12 @@
   </div>
   <div class="deal">
     <button class="pick" id="pick-exp" data-target="panel-exp" aria-expanded="false">
-      <svg class="card-svg" viewBox="0 0 260 364"><use href="#back"/></svg>
-      <span class="cap"><b>Experience</b><span>flip to reveal</span></span>
+      <svg class="card-svg" viewBox="0 0 260 364"><use href="#back-exp"/></svg>
+      <span class="cap"><b>Experience</b><span>click to reveal</span></span>
     </button>
     <button class="pick" id="pick-about" data-target="panel-about" aria-expanded="false">
       <svg class="card-svg" viewBox="0 0 260 364"><use href="#back"/></svg>
-      <span class="cap"><b>About Me</b><span>flip to reveal</span></span>
+      <span class="cap"><b>About Me</b><span>click to reveal</span></span>
 
     </button>
   </div>
@@ -198,63 +329,33 @@
   <!-- ===== Experience panel ===== -->
   <div class="panel" id="panel-exp">
     <div class="panel-inner"><div class="panel-pad">
-      <div class="role">
-        <div class="role-ic">🤖</div>
-        <div>
-          <div class="role-head"><span class="role-co">SciFin</span><span class="role-when">Fall 2026</span></div>
-          <div class="role-sub">AI PM Intern · San Jose, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>AI tooling for sales data</strong> — working directly with CEO Mohit Aron to build an AI-powered tool for processing and surfacing insights from sales data.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Cross-functional embed</strong> — bridging Software Engineering and Product teams to translate technical execution into product vision.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">Amazon</span><span class="xp-when">May 2026 - Present</span></div>
+        <p class="xp-desc"><span class="xp-role">Engineering Program Manager Intern</span> — building a multi-agent pipeline with AWS and Claude Code to optimize operations for robotic sort centers, plus an ETL pipeline that converts 46 unstructured Smartsheet templates into compatible CSV files for Amazon Source.</p>
       </div>
-      <div class="role">
-        <div class="role-ic">📊</div>
-        <div>
-          <div class="role-head"><span class="role-co">UBS</span><span class="role-when">May – Jul 2025</span></div>
-          <div class="role-sub">Summer Analyst, Wealth Management · San Francisco, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Vibe-coded a risk alert app</strong> — used Lovable and Claude to build a web tool alerting portfolio managers to external market risks.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>30% workflow efficiency gain</strong> — launched a scalable stock data pipeline via the Bloomberg Excel API.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>ETF investment strategy</strong> — synthesized Morningstar risk analysis across 47 competing financial products to guide client recommendations.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">DotEdu</span><span class="xp-when">Feb 2026 - Present</span></div>
+        <p class="xp-desc"><span class="xp-role">Founder, Head of Product</span> — building a full-stack AI tutoring app that learns material from students' classes and auto-syncs with LMS platforms like Canvas. Integrated the Anthropic Claude API with Canvas OAuth and built a RAG knowledge base to power an AI schedule optimizer, deployed on Vercel and Supabase.</p>
       </div>
-      <div class="role">
-        <div class="role-ic">🐧</div>
-        <div>
-          <div class="role-head"><span class="role-co">Linux Foundation</span><span class="role-when">Jan – May 2025</span></div>
-          <div class="role-sub">Product Manager, Blockchain · San Francisco, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Product roadmap delivery</strong> — led a 6-person team through SWOT analysis and 12 stakeholder interviews to shape the product vision.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>GTM for 200+ surveyed users</strong> — defined client personas and validated demand for a new blockchain product.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Skill Wallet MVP</strong> — prototyped a LinkedIn integration with engineering and marketing, plus designed an A/B test and pilot for international rollout.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">UBS</span><span class="xp-when">May 2025 - Jul 2025</span></div>
+        <p class="xp-desc"><span class="xp-role">Summer Analyst</span> — built a Claude Code web app alerting managers to portfolio risks from NewsAPI and Alpha Vantage data, and launched a scalable stock-data collection system on the Bloomberg Excel API that improved workflow efficiency by 30%.</p>
       </div>
-      <div class="role">
-        <div class="role-ic">🎓</div>
-        <div>
-          <div class="role-head"><span class="role-co">InStride</span><span class="role-when">Aug – Dec 2024</span></div>
-          <div class="role-sub">AI Program Analyst, Product &amp; UX · El Segundo, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>LLM chatbot pitch</strong> — proposed a strategy to integrate conversational AI into InStride's customer support page.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>$200K budget allocation model</strong> — built an Excel model guiding UX investment decisions with projected ROI for the rollout.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">The Linux Foundation</span><span class="xp-when">Jan 2025 - May 2025</span></div>
+        <p class="xp-desc"><span class="xp-role">Product Manager (Contract)</span> — prototyped the "Skill Wallet" MVP for LinkedIn integration with cross-functional engineering and marketing teams, led a 6-member team through SWOT analysis and 12 stakeholder interviews, and shaped go-to-market by surveying 200+ customers, designing an A/B test, and running a pilot program.</p>
       </div>
-      <div class="role">
-        <div class="role-ic">⚡</div>
-        <div>
-          <div class="role-head"><span class="role-co">Daicus Technology</span><span class="role-when">May – Oct 2024</span></div>
-          <div class="role-sub">PM Intern, B2B Product · San Francisco, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Agile sprint leadership</strong> — managed 3 engineers in Jira to deliver 2 AI data analytics tools on time for B2B clients.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>MVP scoping framework</strong> — designed a strategy converting unstructured financial data into 4 structured Excel models.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>50% engagement lift</strong> — led LinkedIn and cold-email campaigns that secured the startup's first 2 clients.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">InStride</span><span class="xp-when">Aug 2024 - Dec 2024</span></div>
+        <p class="xp-desc"><span class="xp-role">AI Program Analyst (Contract)</span> — pitched a strategy to add conversational LLM chatbots to InStride's online customer support page, and built an Excel model allocating a $200K budget to UX front-end improvements with calculated ROI to guide the rollout timeline.</p>
       </div>
-      <div class="role">
-        <div class="role-ic">📖</div>
-        <div>
-          <div class="role-head"><span class="role-co">Wikimedia Foundation</span><span class="role-when">Jan – May 2024</span></div>
-          <div class="role-sub">Product Marketing Intern, Growth &amp; UX · Berkeley, CA</div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>3,000 data points analyzed</strong> — surveyed users across 12 countries using Tableau to surface digital product pain points.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>Mobile homepage redesign</strong> — prototyped an interactive UI/UX overhaul in Figma for engineering handoff.</p></div>
-          <div class="hl"><div class="hl-dot"></div><p><strong>325%+ download growth</strong> — targeted ad campaigns drove 150% social media lift and over 325% monthly app download growth.</p></div>
-        </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">Daicus Technology</span><span class="xp-when">Jan 2024 - May 2024</span></div>
+        <p class="xp-desc"><span class="xp-role">Product Management Intern</span> — led agile sprints with 3 software engineers in Jira to ship 2 AI data analytics tools for B2B clients, scoped an MVP framework converting unstructured financial data into 4 Excel models, and ran a LinkedIn and cold-email campaign that boosted engagement 50% and secured the first 2 clients.</p>
+      </div>
+      <div class="xp">
+        <div class="xp-head"><span class="xp-co">Wikimedia Foundation</span><span class="xp-when">Jan 2024 - May 2024</span></div>
+        <p class="xp-desc"><span class="xp-role">Product Design Intern (Contract)</span> — surveyed users across 12 countries and analyzed 3,000 data points in Tableau to identify mobile app pain points, led a UI/UX redesign of the mobile homepage in Figma for engineering handoff, and grew monthly app downloads over 325% via a targeted ad campaign.</p>
       </div>
     </div></div>
   </div>
@@ -324,14 +425,20 @@
   // The .pick label stays flat; only the card face tilts.
   Card.prototype._apply = function(){
     var s = this.svg;
-    // Shadow shifts opposite to tilt: right tilt → shadow left, forward tilt → shadow down
-    var sx = -(this.ry * 1.4);
-    var sy =   this.rx * 1.0;
     s.style.transform =
       'perspective(700px) rotateZ(' + this.restZ + 'deg)' +
       ' rotateX(' + this.rx + 'deg) rotateY(' + this.ry + 'deg)';
+
+    // Dynamic shadow: the lifted edge throws a longer, softer, darker shadow.
+    // Offset runs opposite to the tilt; blur + opacity grow with how far it's tilted.
+    var sx   = -this.ry * 1.7;
+    var sy   =  this.rx * 1.3;
+    var lift = Math.min(1, Math.sqrt(this.rx*this.rx + this.ry*this.ry) / MAX_TILT);
+    var blur = 22 + lift * 26;
+    var op   = (0.20 + lift * 0.18).toFixed(3);
     s.style.filter =
-      'drop-shadow(' + sx + 'px ' + (20 + sy) + 'px 30px rgba(20,20,45,.26))';
+      'drop-shadow(' + (sx*0.35) + 'px ' + (7 + sy*0.35) + 'px 9px rgba(20,20,45,.26)) ' +
+      'drop-shadow(' + sx + 'px ' + (22 + sy) + 'px ' + blur + 'px rgba(20,20,45,' + op + '))';
   };
 
   Card.prototype._bind = function(){
